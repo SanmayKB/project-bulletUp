@@ -1,5 +1,7 @@
 INCLUDE "src/main/utils/hardware.inc"
 
+
+;the section for game variables
 SECTION "GameVariables", WRAM0
 	wLastKeys:: db
 	wCurKeys:: db
@@ -38,7 +40,50 @@ EntryPoint:
 	ld %11100100
 	ld [rBGP],a 
 	ld [rOBP0], a 
-	
+
+NextGameState::
+	;Remeber: DO NOT TURN OFF LCD OUTSIDE OF VBLANK
+
+	call WaitForOneVBlank
+	call ClearBackground
+
+	;turn off the lcd
+	xor a 
+	ld[rLCDC], a
+	ld[rSCX], a 
+	ld [rSCY], a 
+	ld [rWX], a 
+	ld [rWY], a 
+
+	;disable interrupts
+
+	call DisableInterrupts
+
+	;clear all sprites
+
+	call ClearAllSprites
+
+
+	;intiate the next state
+	ld a, [wGameState]
+	cp 2;gameplay state
+	call z, InitGameplayState
+	ld a, [wGameState]
+	cp 1;story state
+	call z, InitStoryState
+	ld a, [wGameState]
+	and a; if it is 0 then it is title screen state
+	call z, InitTitleScreenState
+
+	;update the next state
+
+	ld a, [wGameState]
+	cp 2 ;2 = Gameplay state
+	jp z, UpdateGameplayState
+	cp 1 
+	jp z, UpdateStoryState
+	jp UpdateTitleScreenState 
+
 
 
 
