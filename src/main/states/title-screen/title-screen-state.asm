@@ -30,24 +30,6 @@ InitTitleScreenState::
 	ret 
 
 
-DrawTextTilesLoop::
-	;de stores which tile to start in  
-	;hl stores the address of our text
-
-	ld a, hl 
-	cp 255
-	ret z
-
-
-	;write the current character in hl to the current address on the tilemap in de
-
-	ld a, [hl]
-	ld [de], a 
-	inc hl
-	inc de 
-
-	;move on to the next background tile and next character
-	jp DrawTextTilesLoop
 
 DrawTitleScreen::
 	;copy the tile data 

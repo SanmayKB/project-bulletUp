@@ -37,7 +37,7 @@ EntryPoint:
 	ld [rLCDC], a 
 
 	;during the first blank frame we load the pallate to both the background and objects
-	ld %11100100
+	ld a,%11100100
 	ld [rBGP],a 
 	ld [rOBP0], a 
 
