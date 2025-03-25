@@ -3,9 +3,9 @@ INCLUDE "src/main/utils/constants.inc"
 
 SECTION "BulletVariables", WRAM0
 wSpawnBullet: db
-wActiveBulletCounter: db;how many bullets are on screen 
+wActiveBulletCounter:: db;how many bullets are on screen 
 wUpdateBulletCounter: db ;how many bullets we have updated
-wBullets: ds MAX_BULLET_COUNT*PER_BULLET_BYTES_COUNT
+wBullets:: ds MAX_BULLET_COUNT*PER_BULLET_BYTES_COUNT
 
 SECTION"Bullets", ROM0
 bulletMetasprite::
@@ -107,7 +107,7 @@ UpdateBullets_PerBullet:
 	;if we need to spawn the bullet then go ahead and spawn it 
 	ld a, [wSpawnBullet]
 	and a 
-	jp z, UpdateBulets_Loop
+	jp z, UpdateBullets_Loop
 
 UpdateBullets_PerBullet_SpawnDeactivatedBullet:
 	;reset the variable so that we do no spawn anymore

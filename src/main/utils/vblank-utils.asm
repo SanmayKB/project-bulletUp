@@ -27,7 +27,7 @@ WaitForVBlankFunction_Loop::
 	ld [wVBlankCount], a 
 	ret z
 
-WaitForVBlankFucntion_Loop2::
+WaitForVBlankFunction_Loop2::
 	ld a, [rLY]
 	cp 144
 	jp nc, WaitForVBlankFunction_Loop2

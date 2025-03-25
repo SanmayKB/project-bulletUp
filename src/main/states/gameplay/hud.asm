@@ -13,7 +13,7 @@ IncreaseScore::
 IncreaseScore_Loop:
 
     ; Increase the digit 
-    ld a, [hl]
+    ld a, [hl] 
     inc a
     ld [hl], a
 

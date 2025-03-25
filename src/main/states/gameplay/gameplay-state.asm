@@ -24,7 +24,7 @@ InitGameplayState::
 	ld [wScore+4], a
 	ld [wScore+5], a
 
-	call InititalizeBackground
+	call InitializeBackground
 	call InitializePlayer
 	call InitializeBullets
 	call InitializeEnemies

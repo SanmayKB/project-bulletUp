@@ -41,7 +41,7 @@ DrawText_WithTypewriterEffect::
 	ld [wVBlankCount], a  
 
 	;call our function that waits for the VBlank
-	call waitForVBlankFunction
+	call WaitForVBlankFunction
 
 	ld a, [hl]
 	cp 255 

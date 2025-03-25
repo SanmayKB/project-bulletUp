@@ -41,7 +41,7 @@ DrawTitleScreen::
 	;copy the tilemap
 	ld de, 	titleScreenTileMap
 	ld hl, $9800
-	ld bc, titleScreenTilemapEnd - titleScreenTileMap
+	ld bc, titleScreenTileMapEnd - titleScreenTileMap
 	jp CopyDEintoMemoryAtHL_With52Offset
 
 UpdateTitleScreenState::
