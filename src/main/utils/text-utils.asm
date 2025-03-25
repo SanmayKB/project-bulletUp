@@ -1,6 +1,16 @@
 SECTION "Text", ROM0
 
 
+textFontTileData: INCBIN "src/generated/backgrounds/text-font.2bpp"
+textFontTileDataEnd:
+
+LoadTextFontIntoVRAM::
+	; Copy the tile data
+	ld de, textFontTileData ; de contains the address where data will be copied from;
+	ld hl, $9000 ; hl contains the address where data will be copied to;
+	ld bc, textFontTileDataEnd - textFontTileData ; bc contains how many bytes we have to copy.
+    jp CopyDEintoMemoryAtHL
+   
 
 DrawTextTilesLoop::
 	;de stores which tile to start in  
